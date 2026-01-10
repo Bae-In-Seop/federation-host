@@ -1,0 +1,70 @@
+{
+  "categories": [
+    {
+      "id": "introduce",
+      "label": "Introduce",
+      "items": [
+        {
+          "id": "about",
+          "label": "About",
+          "description": "자기소개 · 경력 · 스킬",
+          "icon": "user"
+        },
+        {
+          "id": "projects",
+          "label": "Projects",
+          "description": "주요 프로젝트 소개",
+          "icon": "folder"
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "label": "Tools",
+      "items": [
+        {
+          "id": "flow-builder",
+          "label": "Flow Builder",
+          "description": "워크플로우 에디터",
+          "icon": "flow"
+        }
+      ]
+    },
+    {
+      "id": "react",
+      "label": "React",
+      "items": [
+        {
+          "id": "react-playground",
+          "label": "Playground",
+          "description": "UI 컴포넌트 쇼케이스",
+          "icon": "components"
+        },
+        {
+          "id": "react-dashboard",
+          "label": "Dashboard",
+          "description": "차트와 데이터 시각화",
+          "icon": "dashboard"
+        }
+      ]
+    },
+    {
+      "id": "vue",
+      "label": "Vue",
+      "items": [
+        {
+          "id": "vue-playground",
+          "label": "Playground",
+          "description": "UI 컴포넌트 쇼케이스",
+          "icon": "components"
+        },
+        {
+          "id": "vue-dashboard",
+          "label": "Dashboard",
+          "description": "차트와 데이터 시각화",
+          "icon": "dashboard"
+        }
+      ]
+    }
+  ]
+}
