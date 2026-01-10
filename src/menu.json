@@ -18,18 +18,7 @@
         }
       ]
     },
-    {
-      "id": "tools",
-      "label": "Tools",
-      "items": [
-        {
-          "id": "flow-builder",
-          "label": "Flow Builder",
-          "description": "워크플로우 에디터",
-          "icon": "flow"
-        }
-      ]
-    },
+
     {
       "id": "react",
       "label": "React",
@@ -45,6 +34,12 @@
           "label": "Dashboard",
           "description": "차트와 데이터 시각화",
           "icon": "dashboard"
+        },
+        {
+          "id": "flow-builder",
+          "label": "Flow Builder",
+          "description": "워크플로우 에디터",
+          "icon": "flow"
         }
       ]
     },

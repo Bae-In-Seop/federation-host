@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState, useRef, useEffect, useCallback } from 'react'
+import React, { Suspense, lazy, useState, useRef, useEffect, useCallback, Component, type ReactNode } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import './style.css'
 import menuData from './menu.json'
@@ -80,7 +80,61 @@ function findCategoryByItemId(itemId: string) {
   return menuCategories.find((cat) => cat.items.some((item) => item.id === itemId))
 }
 
+// Error Boundary for remote apps
+interface ErrorBoundaryProps {
+  children: ReactNode
+  onRetry?: () => void
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean
+  error: Error | null
+}
+
+class RemoteErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props)
+    this.state = { hasError: false, error: null }
+  }
+
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    return { hasError: true, error }
+  }
+
+  handleRetry = () => {
+    this.setState({ hasError: false, error: null })
+    this.props.onRetry?.()
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="remote-error">
+          <div className="remote-error-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+          </div>
+          <h3 className="remote-error-title">앱을 불러오는데 실패했습니다</h3>
+          <p className="remote-error-message">
+            원격 모듈을 로드하는 중 오류가 발생했습니다.
+          </p>
+          <button type="button" className="remote-error-retry" onClick={this.handleRetry}>
+            다시 시도
+          </button>
+        </div>
+      )
+    }
+
+    return this.props.children
+  }
+}
+
 function LoadingFallback() {
+
+
   const { setIsLoading } = useTabContext()
 
   useEffect(() => {
@@ -108,15 +162,19 @@ function RemoteShell({ remoteId }: { remoteId: string }) {
       return <Projects />
     case 'react-playground':
       return (
-        <Suspense fallback={<LoadingFallback />}>
+        <RemoteErrorBoundary>
+          <Suspense fallback={<LoadingFallback />}>
           <PlaygroundApp />
         </Suspense>
+        </RemoteErrorBoundary>
       )
     case 'flow-builder':
       return (
-        <Suspense fallback={<LoadingFallback />}>
+        <RemoteErrorBoundary>
+          <Suspense fallback={<LoadingFallback />}>
           <FlowBuilderApp />
         </Suspense>
+        </RemoteErrorBoundary>
       )
     case 'react-dashboard':
     case 'vue-playground':

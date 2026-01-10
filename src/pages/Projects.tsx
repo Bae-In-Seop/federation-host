@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "./Projects.css";
 
 interface Project {
@@ -9,6 +10,7 @@ interface Project {
   techs: string[];
   features: string[];
   type: "web" | "desktop" | "tool";
+  link?: string;
 }
 
 const projects: Project[] = [
@@ -26,6 +28,7 @@ const projects: Project[] = [
       "참석자 관리 및 공유 기능",
     ],
     type: "web",
+    link: "https://skt.timblo.io/",
   },
   {
     id: "baronote-pc",
@@ -41,36 +44,32 @@ const projects: Project[] = [
       "로컬 파일 관리",
     ],
     type: "desktop",
+    link: "http://naver.me/FDngYwpN",
   },
   {
     id: "baronote-web",
     title: "바로노트 Web",
-    description:
-      "음성인식 솔루션을 활용하여 사용자에게 회의록을 빠르게 작성해주는 웹 애플리케이션",
+    description: "음성인식 솔루션을 활용하여 사용자에게 회의록을 빠르게 작성해주는 웹 애플리케이션",
     role: "프론트엔드 개발",
     techs: ["React", "TypeScript", "TailwindCSS", "React-Query"],
-    features: [
-      "웹 기반 음성인식",
-      "클라우드 저장 및 동기화",
-      "협업 기능",
-      "반응형 디자인",
-    ],
+    features: ["웹 기반 음성인식", "클라우드 저장 및 동기화", "협업 기능", "반응형 디자인"],
     type: "web",
   },
   {
-    id: "storybook",
-    title: "Storybook 컴포넌트 라이브러리",
+    id: "flow-builder",
+    title: "Flow Builder",
     description:
-      "재사용 가능한 UI 컴포넌트들을 체계적으로 관리하고 테스트하기 위한 React 기반의 Storybook",
-    role: "프론트엔드 개발 / 설계",
-    techs: ["React", "Storybook", "TypeScript", "Styled-Components"],
+      "시나리오 기반의 워크플로우를 시각적으로 설계하고 관리할 수 있는 플로우 빌더 웹 애플리케이션",
+    role: "프론트엔드 개발",
+    techs: ["React", "React Flow", "Ant Design", "Zustand", "React-Query"],
     features: [
-      "컴포넌트 문서화",
-      "인터랙티브 테스트 환경",
-      "디자인 시스템 구축",
-      "접근성 테스트",
+      "드래그 앤 드롭 플로우 디자인",
+      "시나리오 및 워크플로우 관리",
+      "에이전트 노드 설정",
+      "실시간 플로우 미리보기",
     ],
-    type: "tool",
+    type: "web",
+    link: "/flow-builder",
   },
   {
     id: "i18n-manager",
@@ -79,12 +78,7 @@ const projects: Project[] = [
       "사용자가 입력한 단어를 여러 국가의 언어로 자동 번역하여 결과를 DB에 저장하고 JSON 형식으로 내보낼 수 있는 관리 도구",
     role: "풀스택 개발",
     techs: ["React", "Node.js", "MongoDB", "Express"],
-    features: [
-      "자동 번역 API 연동",
-      "번역 키 관리",
-      "JSON/Excel 내보내기",
-      "번역 히스토리 관리",
-    ],
+    features: ["자동 번역 API 연동", "번역 키 관리", "JSON/Excel 내보내기", "번역 히스토리 관리"],
     type: "tool",
   },
 ];
@@ -117,17 +111,10 @@ const typeIcons: Record<Project["type"], React.ReactNode> = {
 };
 
 export default function Projects() {
+  const navigate = useNavigate();
+
   return (
     <div className="projects-page">
-      <section className="projects-intro">
-        <p>
-          <span className="intro-highlight">팀벨</span>에서 진행한 주요
-          프로젝트들입니다. 음성인식 AI 솔루션을 활용한 다양한 애플리케이션
-          개발에 참여했으며, 사용자 경험을 최우선으로 고려한 인터페이스를
-          구현했습니다.
-        </p>
-      </section>
-
       <div className="projects-grid">
         {projects.map((project) => (
           <article key={project.id} className="project-card">
@@ -159,6 +146,27 @@ export default function Projects() {
                 <li key={feature}>{feature}</li>
               ))}
             </ul>
+
+            {project.link && (
+              <button
+                type="button"
+                className="project-link-btn"
+                onClick={() => {
+                  if (project.link!.startsWith("http")) {
+                    window.open(project.link!, "_blank", "noopener,noreferrer");
+                  } else {
+                    navigate(project.link!);
+                  }
+                }}
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+                바로가기
+              </button>
+            )}
           </article>
         ))}
       </div>

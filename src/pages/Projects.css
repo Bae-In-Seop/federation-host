@@ -18,7 +18,7 @@
   margin: 0;
   color: #475569;
   line-height: 1.8;
-  font-size: 0.95rem;
+  font-size: calc(var(--base-font-size) * 0.95);
 }
 
 .intro-highlight {
@@ -64,7 +64,7 @@
   gap: 6px;
   padding: 5px 10px;
   border-radius: 6px;
-  font-size: 0.7rem;
+  font-size: calc(var(--base-font-size) * 0.7);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -92,7 +92,7 @@
 
 /* Project Content */
 .project-title {
-  font-size: 1.15rem;
+  font-size: calc(var(--base-font-size) * 1.15);
   font-weight: 700;
   color: #1e293b;
   margin: 0;
@@ -101,7 +101,7 @@
 
 .project-description {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: calc(var(--base-font-size) * 0.875);
   color: #64748b;
   line-height: 1.7;
 }
@@ -114,7 +114,7 @@
 }
 
 .role-label {
-  font-size: 0.7rem;
+  font-size: calc(var(--base-font-size) * 0.7);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -122,7 +122,7 @@
 }
 
 .role-value {
-  font-size: 0.85rem;
+  font-size: calc(var(--base-font-size) * 0.85);
   font-weight: 500;
   color: var(--theme-primary);
 }
@@ -139,7 +139,7 @@
   background: white;
   border: 1px solid #e2e8f0;
   border-radius: 5px;
-  font-size: 0.75rem;
+  font-size: calc(var(--base-font-size) * 0.75);
   font-weight: 500;
   color: #475569;
   transition: all 0.15s ease;
@@ -164,7 +164,7 @@
 .project-features li {
   position: relative;
   padding-left: 16px;
-  font-size: 0.8rem;
+  font-size: calc(var(--base-font-size) * 0.8);
   color: #64748b;
   line-height: 1.5;
 }
@@ -189,4 +189,36 @@
   .project-card {
     padding: 20px;
   }
+}
+
+/* Link Button */
+.project-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, var(--theme-primary), var(--theme-accent));
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: calc(var(--base-font-size) * 0.875);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.project-link-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--theme-primary) 40%, transparent);
+}
+
+.project-link-btn:active {
+  transform: translateY(0);
+}
+
+.project-link-btn svg {
+  width: 16px;
+  height: 16px;
 }
