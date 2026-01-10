@@ -32,12 +32,6 @@ export default defineConfig(({ mode }) => {
             singleton: true,
             requiredVersion: "^19.0.0",
           },
-          "react-router-dom": {
-            singleton: true,
-          },
-          "@tanstack/react-query": {
-            singleton: true,
-          },
           zustand: {
             singleton: true,
           },
