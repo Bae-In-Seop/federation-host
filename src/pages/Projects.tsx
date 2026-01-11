@@ -201,24 +201,6 @@ const projects: Project[] = [
     ],
   },
   {
-    id: "flow-builder",
-    title: "Flow Builder",
-    description:
-      "시나리오 기반의 워크플로우를 시각적으로 설계하고 관리할 수 있는 플로우 빌더 웹 애플리케이션",
-    role: "프론트엔드 개발",
-    techs: ["React", "React Flow", "Ant Design", "Zustand", "React-Query"],
-    features: [
-      "드래그 앤 드롭 플로우 디자인",
-      "시나리오 및 워크플로우 관리",
-      "에이전트 노드 설정",
-      "실시간 플로우 미리보기",
-    ],
-    type: "web",
-    link: "/federation-host/flow-builder",
-    detailDescription:
-      "React Flow 라이브러리를 활용한 비주얼 워크플로우 빌더입니다. 드래그 앤 드롭으로 복잡한 시나리오를 시각적으로 설계할 수 있습니다.",
-  },
-  {
     id: "i18n-manager",
     title: "다국어 번역 관리 시스템",
     description:
