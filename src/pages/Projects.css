@@ -182,12 +182,41 @@
 
 /* Responsive */
 @media (max-width: 480px) {
+  .projects-page {
+    gap: 20px;
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .project-card {
-    padding: 20px;
+    padding: 16px;
+    gap: 12px;
+    border-radius: 16px;
+  }
+
+  .project-title {
+    font-size: calc(var(--base-font-size) * 1.05);
+  }
+
+  .project-description {
+    font-size: calc(var(--base-font-size) * 0.8);
+  }
+
+  .tech-tag {
+    padding: 3px 8px;
+    font-size: calc(var(--base-font-size) * 0.7);
+  }
+
+  .project-features li {
+    font-size: calc(var(--base-font-size) * 0.75);
+  }
+
+  .project-link-btn {
+    padding: 10px 16px;
+    font-size: calc(var(--base-font-size) * 0.8);
   }
 }
 
