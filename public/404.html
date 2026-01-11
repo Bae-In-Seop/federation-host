@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      // SPA redirect for GitHub Pages
+      // Saves the path and redirects to index.html
+      const path = window.location.pathname;
+      const search = window.location.search;
+      const hash = window.location.hash;
+
+      // Store the intended path
+      sessionStorage.setItem('spa-redirect', path + search + hash);
+
+      // Redirect to the base URL
+      window.location.replace('/federation-host/');
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>
