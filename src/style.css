@@ -1088,62 +1088,6 @@ code {
   }
 }
 
-/* Responsive - Sidebar Layout */
-@media (max-width: 900px) {
-  .app.layout-sidebar {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-  }
-
-  .app.layout-sidebar.sidebar-collapsed {
-    grid-template-columns: 1fr;
-  }
-
-  .layout-sidebar .sidebar {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 20px;
-  }
-
-  .layout-sidebar .sidebar-top {
-    gap: 16px;
-  }
-
-  .layout-sidebar .collapse-btn {
-    display: none;
-  }
-
-  .layout-sidebar .brand-text {
-    opacity: 1 !important;
-    width: auto !important;
-  }
-
-  .layout-sidebar .menu {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 8px;
-    flex: 0;
-  }
-
-  .layout-sidebar .menu-item {
-    padding: 10px 14px;
-  }
-
-  .layout-sidebar .menu-text {
-    opacity: 1 !important;
-    width: auto !important;
-  }
-
-  .layout-sidebar .menu-text small {
-    display: none;
-  }
-
-  .layout-sidebar .sidebar-bottom {
-    display: none;
-  }
-}
 
 /* Mobile Menu Button */
 .mobile-menu-btn {
