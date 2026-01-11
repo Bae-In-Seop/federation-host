@@ -4,9 +4,12 @@ import './style.css'
 import menuData from './menu.json'
 import About from './pages/About'
 import Projects from './pages/Projects'
+import Architecture from './pages/Architecture'
+import VueWrapper from './VueWrapper'
 
 const PlaygroundApp = lazy(() => import('playground/App'))
 const FlowBuilderApp = lazy(() => import('flowbuilder/App'))
+const VuePlaygroundApp = lazy(() => import('vue_playground/mount').then((mod) => ({ default: () => <VueWrapper mountFunctions={mod} /> })))
 
 type LayoutMode = 'sidebar' | 'topbar'
 type FontSize = 'small' | 'medium' | 'large'
@@ -69,6 +72,13 @@ const icons: Record<string, React.ReactNode> = {
       <path d="M12 15v-3" />
     </svg>
   ),
+  layers: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M12 2L2 7l10 5 10-5-10-5z" />
+      <path d="M2 17l10 5 10-5" />
+      <path d="M2 12l10 5 10-5" />
+    </svg>
+  ),
 }
 
 // Menu data from JSON
@@ -78,6 +88,14 @@ const allMenuItems = menuCategories.flatMap((cat) => cat.items)
 // Helper to find category by item id
 function findCategoryByItemId(itemId: string) {
   return menuCategories.find((cat) => cat.items.some((item) => item.id === itemId))
+}
+
+// Helper to get tab label with category
+function getTabLabel(itemId: string) {
+  const category = findCategoryByItemId(itemId)
+  const item = allMenuItems.find((m) => m.id === itemId)
+  if (!category || !item) return itemId
+  return `${category.label} - ${item.label}`
 }
 
 // Error Boundary for remote apps
@@ -160,6 +178,8 @@ function RemoteShell({ remoteId }: { remoteId: string }) {
       return <About />
     case 'projects':
       return <Projects />
+    case 'architecture':
+      return <Architecture />
     case 'react-playground':
       return (
         <RemoteErrorBoundary>
@@ -176,8 +196,15 @@ function RemoteShell({ remoteId }: { remoteId: string }) {
         </Suspense>
         </RemoteErrorBoundary>
       )
-    case 'react-dashboard':
     case 'vue-playground':
+      return (
+        <RemoteErrorBoundary>
+          <Suspense fallback={<LoadingFallback />}>
+            <VuePlaygroundApp />
+          </Suspense>
+        </RemoteErrorBoundary>
+      )
+    case 'react-dashboard':
     case 'vue-dashboard':
     default:
       return (
@@ -634,7 +661,7 @@ export default function App() {
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [themeColor, setThemeColor] = useState('blue')
   const [fontSize, setFontSize] = useState<FontSize>('medium')
-  const [tabs, setTabs] = useState<TabItem[]>([{ id: 'about', label: 'About' }])
+  const [tabs, setTabs] = useState<TabItem[]>([{ id: 'about', label: getTabLabel('about') }])
   const [activeTab, setActiveTabState] = useState('about')
   const [refreshKey, setRefreshKey] = useState(0)
   const [isMaximized, setIsMaximized] = useState(false)
@@ -656,7 +683,7 @@ export default function App() {
       // Add to tabs if not exists
       setTabs((prev) => {
         if (prev.find((t) => t.id === pathId)) return prev
-        return [...prev, { id: pathId, label: item.label }]
+        return [...prev, { id: pathId, label: getTabLabel(pathId) }]
       })
       setActiveTabState(pathId)
     } else {
@@ -670,7 +697,7 @@ export default function App() {
     if (!item) return
 
     if (!tabs.find((t) => t.id === id)) {
-      setTabs([...tabs, { id, label: item.label }])
+      setTabs([...tabs, { id, label: getTabLabel(id) }])
     }
     navigate(`/${id}`)
   }, [tabs, navigate])
@@ -678,7 +705,7 @@ export default function App() {
   const closeTab = useCallback((id: string) => {
     const newTabs = tabs.filter((t) => t.id !== id)
     if (newTabs.length === 0) {
-      setTabs([{ id: 'about', label: 'About' }])
+      setTabs([{ id: 'about', label: getTabLabel('about') }])
       navigate('/about')
     } else {
       setTabs(newTabs)
@@ -701,7 +728,7 @@ export default function App() {
   }, [tabs, activeTab])
 
   const closeAllTabs = useCallback(() => {
-    setTabs([{ id: 'about', label: 'About' }])
+    setTabs([{ id: 'about', label: getTabLabel('about') }])
     navigate('/about')
   }, [navigate])
 

@@ -15,6 +15,12 @@
           "label": "Projects",
           "description": "주요 프로젝트 소개",
           "icon": "folder"
+        },
+        {
+          "id": "architecture",
+          "label": "Site Architecture",
+          "description": "Module Federation",
+          "icon": "layers"
         }
       ]
     },
@@ -26,14 +32,8 @@
         {
           "id": "react-playground",
           "label": "Playground",
-          "description": "UI 컴포넌트 쇼케이스",
+          "description": "단일 컴포넌트 모음",
           "icon": "components"
-        },
-        {
-          "id": "react-dashboard",
-          "label": "Dashboard",
-          "description": "차트와 데이터 시각화",
-          "icon": "dashboard"
         },
         {
           "id": "flow-builder",
@@ -50,14 +50,8 @@
         {
           "id": "vue-playground",
           "label": "Playground",
-          "description": "UI 컴포넌트 쇼케이스",
+          "description": "단일 컴포넌트 모음",
           "icon": "components"
-        },
-        {
-          "id": "vue-dashboard",
-          "label": "Dashboard",
-          "description": "차트와 데이터 시각화",
-          "icon": "dashboard"
         }
       ]
     }

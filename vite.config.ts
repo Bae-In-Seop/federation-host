@@ -22,6 +22,11 @@ export default defineConfig(({ mode }) => {
             name: "flowbuilder",
             entry: env.VITE_FLOWBUILDER_URL,
           },
+          vue_playground: {
+            type: "module",
+            name: "vue_playground",
+            entry: env.VITE_VUE_PLAYGROUND_URL,
+          },
         },
         shared: {
           react: {

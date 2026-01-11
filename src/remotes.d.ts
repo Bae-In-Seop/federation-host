@@ -17,3 +17,8 @@ declare module 'flowbuilder/App' {
   const App: React.ComponentType
   export default App
 }
+
+declare module 'vue_playground/mount' {
+  export function mount(options: { container: HTMLElement }): void
+  export function unmount(): void
+}
