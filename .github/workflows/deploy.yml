@@ -32,6 +32,10 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_PLAYGROUND_URL: https://bae-in-seop.github.io/federation-playground/remoteEntry.js
+          VITE_FLOWBUILDER_URL: https://bae-in-seop.github.io/federation-flowbuilder/remoteEntry.js
+          VITE_VUE_PLAYGROUND_URL: https://bae-in-seop.github.io/federation-vue-playground/remoteEntry.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
