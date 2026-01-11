@@ -419,7 +419,102 @@ function TabBar() {
   )
 }
 
-function RemoteContent() {
+interface MobileMenuProps {
+  isOpen: boolean
+  onClose: () => void
+  activeTab: string
+  onMenuClick: (id: string) => void
+  themeColor: string
+  onThemeColorChange: (color: string) => void
+}
+
+function MobileMenu({ isOpen, onClose, activeTab, onMenuClick, themeColor, onThemeColorChange }: MobileMenuProps) {
+  const handleMenuClick = (id: string) => {
+    onMenuClick(id)
+    onClose()
+  }
+
+  return (
+    <div className={`mobile-menu-popover ${isOpen ? 'is-open' : ''}`}>
+      <div className="mobile-menu-backdrop" onClick={onClose} />
+      <div className="mobile-menu-content">
+        <div className="mobile-menu-header">
+          <div className="mobile-menu-brand">
+            <span className="brand-avatar">T</span>
+            <div className="mobile-menu-brand-text">
+              <h3>Toby's Lab</h3>
+              <p>Frontend Developer</p>
+            </div>
+          </div>
+          <button type="button" className="mobile-menu-close" onClick={onClose}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div className="mobile-menu-body">
+          {menuCategories.map((category) => (
+            <div key={category.id} className="mobile-menu-category">
+              <div className="mobile-menu-category-label">{category.label}</div>
+              <div className="mobile-menu-items">
+                {category.items.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={`mobile-menu-item ${activeTab === item.id ? 'is-active' : ''}`}
+                    onClick={() => handleMenuClick(item.id)}
+                  >
+                    {icons[item.icon]}
+                    <div className="mobile-menu-item-text">
+                      <span>{item.label}</span>
+                      <small>{item.description}</small>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+          <div className="mobile-menu-divider" />
+          <div className="mobile-menu-settings">
+            <div className="mobile-menu-settings-title">Theme Color</div>
+            <div className="mobile-color-options">
+              {themeColors.map((color) => (
+                <button
+                  key={color.id}
+                  type="button"
+                  className={`mobile-color-option ${themeColor === color.id ? 'is-selected' : ''}`}
+                  style={{ '--color': color.primary, background: color.primary } as React.CSSProperties}
+                  onClick={() => onThemeColorChange(color.id)}
+                  aria-label={color.name}
+                >
+                  {themeColor === color.id && (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function MobileMenuButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button type="button" className="mobile-menu-btn" onClick={onClick} aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="12" cy="6" r="2" />
+        <circle cx="12" cy="12" r="2" />
+        <circle cx="12" cy="18" r="2" />
+      </svg>
+    </button>
+  )
+}
+
+function RemoteContent({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
   const { activeTab, refreshKey, isMaximized, toggleMaximize } = useTabContext()
   const active = allMenuItems.find((item) => item.id === activeTab) ?? allMenuItems[0]
 
@@ -440,8 +535,11 @@ function RemoteContent() {
       <TabBar />
       <div className="content-body">
         <header className="content-header">
-          <Breadcrumb itemId={activeTab} />
-          <h1>{active.label}</h1>
+          <div>
+            <Breadcrumb itemId={activeTab} />
+            <h1>{active.label}</h1>
+          </div>
+          <MobileMenuButton onClick={onMobileMenuOpen} />
           <p className="lede">{active.description}</p>
         </header>
 
@@ -666,6 +764,7 @@ export default function App() {
   const [refreshKey, setRefreshKey] = useState(0)
   const [isMaximized, setIsMaximized] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   // Sync activeTab with URL on location change
   useEffect(() => {
@@ -848,8 +947,17 @@ export default function App() {
       </aside>
 
       <TabContext.Provider value={tabContextValue}>
-        <RemoteContent />
+        <RemoteContent onMobileMenuOpen={() => setMobileMenuOpen(true)} />
       </TabContext.Provider>
+
+      <MobileMenu
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        activeTab={activeTab}
+        onMenuClick={openTab}
+        themeColor={themeColor}
+        onThemeColorChange={setThemeColor}
+      />
     </div>
   )
 }
