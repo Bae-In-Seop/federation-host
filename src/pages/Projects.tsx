@@ -26,6 +26,43 @@ interface Project {
 
 const projects: Project[] = [
   {
+    id: "mcp-ui-assistant",
+    title: "MCP UI Assistant",
+    description:
+      "AI 어시스턴트가 실제 UI 디자인을 검색하고 와이어프레임 생성을 도와주는 MCP(Model Context Protocol) 서버",
+    role: "풀스택 개발",
+    techs: ["TypeScript", "Node.js", "MCP SDK"],
+    features: [
+      "UI 디자인 이미지 검색 (DuckDuckGo)",
+      "스타일/키워드로 검색 결과 정제",
+      "검색 결과 상세 정보 조회",
+      "Google, Dribbble, Behance 검색 링크 제공",
+    ],
+    type: "tool",
+    link: "https://github.com/bae-in-seop/mcp-ui-assistant",
+    detailDescription:
+      "Claude Code, Claude Desktop, Codex 등의 AI 어시스턴트에서 사용할 수 있는 MCP 서버입니다. DuckDuckGo 이미지 검색을 활용하여 API 키 없이 UI 디자인 레퍼런스를 검색하고, AI가 이를 참고하여 ASCII 와이어프레임을 생성할 수 있도록 도와줍니다.",
+    history: [
+      {
+        version: "1차 업데이트",
+        title: "Claude Code 지원",
+        items: [
+          "Claude Code MCP 서버 연동",
+          "DuckDuckGo 이미지 검색을 통한 UI 디자인 레퍼런스 검색 기능 구현",
+          "검색 결과 정제 및 상세 정보 조회 기능 추가",
+        ],
+      },
+      {
+        version: "2차 업데이트",
+        title: "Codex 지원 및 환경설정 커스터마이징",
+        items: [
+          "Codex MCP 서버 연동 추가",
+          "setup.bat을 통한 사용자 니즈에 맞는 환경설정 커스터마이징 기능 추가",
+        ],
+      },
+    ],
+  },
+  {
     id: "adot-meeting",
     title: "SK A.Biz 에이닷 회의록 시스템",
     description:
