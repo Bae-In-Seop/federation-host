@@ -26,11 +26,87 @@ interface Project {
 
 const projects: Project[] = [
   {
+    id: "advisor-assistant",
+    title: "AI 상담 어시스턴트",
+    description:
+      "상담사와 고객 간의 실시간 통화 데이터를 표시하고, KMS(지식관리시스템)에서 관련 정보를 검색하여 상담사에게 제공하는 웹 애플리케이션",
+    period: "2025.09 - 현재",
+    role: "프론트엔드 개발",
+    techs: ["Vue 3", "TypeScript", "Element Plus", "Pinia", "Socket.io", "Highcharts"],
+    features: [
+      "실시간 통화 데이터 표시",
+      "KMS 연동 검색 기능",
+      "상담 이력 조회",
+      "실시간 상담 지원 정보 제공",
+      "관리자 대시보드",
+    ],
+    type: "web",
+    detailDescription:
+      "상담사와 고객 간의 통화 내용을 실시간으로 표시하고, KMS(지식관리시스템)에서 관련 정보를 검색하여 상담사가 빠르게 고객 응대를 할 수 있도록 지원하는 웹 애플리케이션입니다.",
+    history: [
+      {
+        version: "1차 업데이트",
+        title: "상담사 편의 기능 추가",
+        items: [
+          "공지사항 기능 추가",
+          "메모 기능 추가",
+          "할일 기능 추가",
+          "북마크 기능 추가",
+        ],
+      },
+      {
+        version: "2차 업데이트",
+        title: "AI 기능 연동",
+        items: [
+          "LLM을 통한 상담 요약 기능 추가",
+          "LLM을 통한 할일 자동 생성 기능 추가",
+        ],
+      },
+    ],
+  },
+  {
+    id: "call-analytics",
+    title: "콜 분석 대시보드",
+    description:
+      "상담 콜 데이터를 집계하여 유형, 키워드 등 다양한 카테고리별로 분석 결과를 시각화하는 대시보드",
+    period: "2026.01 - 현재",
+    role: "풀스택 개발",
+    techs: [
+      "Vue 3",
+      "TypeScript",
+      "Element Plus",
+      "Pinia",
+      "Highcharts",
+      "NestJS",
+      "Prisma",
+      "PostgreSQL",
+    ],
+    features: [
+      "콜 데이터 집계 및 통계",
+      "유형/키워드별 카테고리 분석",
+      "다양한 차트를 통한 데이터 시각화",
+      "기간별 트렌드 분석",
+    ],
+    type: "web",
+    detailDescription:
+      "상담 어시스턴트에서 발생한 콜 데이터를 DB에서 집계하여, 유형, 키워드 등 다양한 카테고리를 적용한 분석 결과를 대시보드 형태로 제공하는 웹 애플리케이션입니다.",
+    history: [
+      {
+        version: "1차 업데이트",
+        title: "사용자 편의성 개선",
+        items: [
+          "Grid Layout 적용으로 대시보드 위젯 자유 배치 가능",
+          "사용자별 레이아웃 저장 기능 추가",
+        ],
+      },
+    ],
+  },
+  {
     id: "mcp-ui-assistant",
     title: "MCP UI Assistant",
     description:
       "AI 어시스턴트가 실제 UI 디자인을 검색하고 와이어프레임 생성을 도와주는 MCP(Model Context Protocol) 서버",
-    role: "풀스택 개발",
+    role: "백엔드 개발",
     techs: ["TypeScript", "Node.js", "MCP SDK"],
     features: [
       "UI 디자인 이미지 검색 (DuckDuckGo)",
@@ -77,7 +153,6 @@ const projects: Project[] = [
       "Material-UI",
       "Zustand",
       "Socket.io",
-      "Docker",
     ],
     features: [
       "실시간 음성인식 및 텍스트 변환",
@@ -95,7 +170,7 @@ const projects: Project[] = [
         title: "최소 기능 제공",
         items: [
           "홈, 컨텐츠 리스트, 휴지통 등 기본 기능 구현",
-          "음성파일 업로드 → 음성인식 → AI ChatGPT 후처리 → 구간별 요약 데이터 제공",
+          "음성파일 업로드 → 음성인식 → AI 후처리 → 구간별 요약 데이터 제공",
         ],
       },
       {
@@ -145,7 +220,7 @@ const projects: Project[] = [
       "실시간 음성인식, 파일 음성인식 등 음성인식 솔루션을 활용하여 사용자가 원하는 형태의 음성기록본을 제공하는 PC 애플리케이션",
     period: "2023.11 - 2024.03",
     team: "Front 1명 / Back 1명",
-    role: "프론트엔드 개발",
+    role: "프론트엔드 개발, 로컬 DB 연동",
     techs: ["Electron", "React", "JavaScript", "Redux", "Express", "MongoDB"],
     features: [
       "실시간/파일 음성인식 지원",
@@ -194,27 +269,25 @@ const projects: Project[] = [
       "웹에서 실시간 음성인식 서비스 및 회의록 작성 등의 기능을 제공하며 컨텐츠를 공유할 수 있는 플랫폼 서비스",
     period: "2023.01 - 2023.06",
     team: "Front 2명 / Back 1명",
-    role: "프론트엔드 개발",
+    role: "프론트엔드 개발, BFF 서버 개발",
     techs: [
       "React",
       "JavaScript",
       "SCSS",
       "Redux",
       "Styled-Components",
-      "gRPC",
       "Express",
-      "MongoDB",
-      "MySQL",
+      "gRPC",
     ],
     features: [
       "실시간 녹음 및 음성인식",
       "파일 기반 음성인식",
       "컨텐츠 공유 플랫폼",
-      "MSA 아키텍처 기반 서비스",
+      "BFF 서버 구축 (Express + gRPC 클라이언트)",
     ],
     type: "web",
     detailDescription:
-      "웹에서 실시간 음성인식 서비스 및 회의록 작성 등의 기능을 제공하며 컨텐츠를 공유할 수 있는 플랫폼 서비스입니다. MSA(Microservices Architecture) 기반으로 구성되어 확장성과 유지 보수성을 고려한 설계를 적용했습니다.",
+      "웹에서 실시간 음성인식 서비스 및 회의록 작성 등의 기능을 제공하며 컨텐츠를 공유할 수 있는 플랫폼 서비스입니다. MSA(Microservices Architecture) 기반 환경에서 개발했습니다.",
     history: [
       {
         version: "1차 업데이트",
@@ -229,6 +302,14 @@ const projects: Project[] = [
           "사용자 편의를 위한 페이지 추가",
           "대용량 데이터 렌더링 최적화 - 가상화 적용",
           "IntersectionObserver API를 활용한 스크롤링 성능 최적화 및 사용자 경험 향상",
+        ],
+      },
+      {
+        version: "3차 업데이트",
+        title: "BFF 서버 구축",
+        items: [
+          "Express 기반 BFF(Backend For Frontend) 서버 구현",
+          "gRPC 클라이언트 구현 - 백엔드 마이크로서비스와 통신",
         ],
       },
     ],
@@ -298,12 +379,10 @@ const typeIcons: Record<Project["type"], React.ReactNode> = {
 
 function ProjectDetail({ project, onBack }: { project: Project; onBack: () => void }) {
   const handleLinkClick = () => {
-    if (project.link) {
-      if (project.link.startsWith("http")) {
-        window.open(project.link, "_blank", "noopener,noreferrer");
-      } else {
-        window.location.href = project.link;
-      }
+    if (project.link?.startsWith("http")) {
+      window.open(project.link, "_blank", "noopener,noreferrer");
+    } else if (project.link) {
+      window.location.href = project.link;
     }
   };
 
