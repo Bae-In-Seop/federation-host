@@ -27,12 +27,13 @@ interface Project {
 const projects: Project[] = [
   {
     id: "advisor-assistant",
-    title: "AI 상담 어시스턴트",
+    title: "상담 어시스턴트",
     description:
       "상담사와 고객 간의 실시간 통화 데이터를 표시하고, KMS(지식관리시스템)에서 관련 정보를 검색하여 상담사에게 제공하는 웹 애플리케이션",
     period: "2025.09 - 현재",
     role: "프론트엔드 개발",
-    techs: ["Vue 3", "TypeScript", "Element Plus", "Pinia", "Socket.io", "Highcharts"],
+    techs: ["Vue 3", "TypeScript", "Element Plus", "Pinia", "Socket.io"],
+    link: "/federation-host/assistant-demo",
     features: [
       "실시간 통화 데이터 표시",
       "KMS 연동 검색 기능",
