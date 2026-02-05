@@ -27,6 +27,11 @@ export default defineConfig(({ mode }) => {
             name: "vue_playground",
             entry: env.VITE_VUE_PLAYGROUND_URL,
           },
+          assistant_demo: {
+            type: "module",
+            name: "assistant_demo",
+            entry: env.VITE_ASSISTANT_DEMO_URL,
+          },
         },
         shared: {
           react: {

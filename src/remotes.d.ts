@@ -22,3 +22,8 @@ declare module 'vue_playground/mount' {
   export function mount(options: { container: HTMLElement }): void
   export function unmount(): void
 }
+
+declare module 'assistant_demo/App' {
+  const App: React.ComponentType
+  export default App
+}

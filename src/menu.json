@@ -52,6 +52,12 @@
           "label": "Playground",
           "description": "단일 컴포넌트 모음",
           "icon": "components"
+        },
+        {
+          "id": "assistant-demo",
+          "label": "Call Assistant",
+          "description": "상담 어시스턴트 UI 시연",
+          "icon": "assistant"
         }
       ]
     }

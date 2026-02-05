@@ -10,6 +10,7 @@ import VueWrapper from './VueWrapper'
 const PlaygroundApp = lazy(() => import('playground/App'))
 const FlowBuilderApp = lazy(() => import('flowbuilder/App'))
 const VuePlaygroundApp = lazy(() => import('vue_playground/mount').then((mod) => ({ default: () => <VueWrapper mountFunctions={mod} /> })))
+const AssistantDemoApp = lazy(() => import('assistant_demo/App'))
 
 type LayoutMode = 'sidebar' | 'topbar'
 type FontSize = 'small' | 'medium' | 'large'
@@ -77,6 +78,12 @@ const icons: Record<string, React.ReactNode> = {
       <path d="M12 2L2 7l10 5 10-5-10-5z" />
       <path d="M2 17l10 5 10-5" />
       <path d="M2 12l10 5 10-5" />
+    </svg>
+  ),
+  assistant: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      <path d="M8 10h.01M12 10h.01M16 10h.01" />
     </svg>
   ),
 }
@@ -201,6 +208,14 @@ function RemoteShell({ remoteId }: { remoteId: string }) {
         <RemoteErrorBoundary>
           <Suspense fallback={<LoadingFallback />}>
             <VuePlaygroundApp />
+          </Suspense>
+        </RemoteErrorBoundary>
+      )
+    case 'assistant-demo':
+      return (
+        <RemoteErrorBoundary>
+          <Suspense fallback={<LoadingFallback />}>
+            <AssistantDemoApp />
           </Suspense>
         </RemoteErrorBoundary>
       )
