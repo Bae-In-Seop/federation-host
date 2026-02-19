@@ -529,29 +529,28 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .project-detail__challenges li {
-  padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-left: 3px solid rgba(99, 102, 241, 0.6);
+  padding: 14px 18px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
   line-height: 1.6;
 }
 
 .project-detail__challenges li strong {
   display: block;
   font-size: calc(var(--base-font-size) * 0.9);
-  color: rgba(255, 255, 255, 0.95);
-  margin-bottom: 6px;
+  color: #1e293b;
+  margin-bottom: 4px;
 }
 
 .project-detail__challenges li p {
   margin: 0;
   font-size: calc(var(--base-font-size) * 0.8);
-  color: rgba(255, 255, 255, 0.55);
+  color: #64748b;
   line-height: 1.5;
 }
 
