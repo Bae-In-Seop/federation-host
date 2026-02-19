@@ -97,9 +97,9 @@ const projects: Project[] = [
       },
     ],
     challenges: [
-      "Figma 토큰의 중첩 구조를 플랫한 CSS 변수로 변환 시 네이밍 충돌 — 재귀 flatten 함수로 kebab-case 변환 및 토큰 타입별 단위 자동 부여로 해결",
-      "variant/size 조합의 스타일 분기 복잡도 — data-* attribute 패턴 도입으로 className 조합 로직 제거, CSS 셀렉터만으로 모든 변형 표현",
-      "다크 모드에서 컴포넌트 가시성 문제 — surface/surface-muted 분리로 배경 대비 확보, on-primary/on-error 토큰으로 컬러 위 텍스트 가독성 보장",
+      "Figma 토큰이 color > primary > hover 처럼 깊게 중첩되어 있어 CSS 변수명이 겹치는 문제 — 중첩 구조를 자동으로 펼쳐서 --color-primary-hover 같은 이름으로 변환하는 스크립트 작성",
+      "버튼 하나에 variant 4종 × size 3종 = 12가지 스타일 조합이 필요한 문제 — data-variant, data-size 속성과 CSS 셀렉터만으로 처리해서 JS 분기 로직 제거",
+      "다크 모드 전환 시 배경과 텍스트가 같은 색이 되어 안 보이는 문제 — 배경용(surface)과 텍스트용(on-primary) 토큰을 분리하여 어떤 테마에서도 대비가 유지되도록 설계",
     ],
     roadmap: [
       "디자인 가이드라인 문서화 — 컴포넌트별 사용 규칙, 간격·컬러 조합 가이드",
