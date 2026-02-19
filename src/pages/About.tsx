@@ -28,13 +28,26 @@ const skills = {
     "Styled-Components",
     "TailwindCSS",
     "Zustand",
+    "Pinia",
     "React-Query",
     "Material-UI",
     "Shadcn-UI",
     "Element-Plus",
+    "Highcharts",
+    "WebSocket",
+    "Module Federation",
+    "Storybook",
+    "Design Tokens",
   ],
-  Backend: ["NodeJS", "Express"],
-  DevOps: ["Docker", "MongoDB", "Git"],
+  Backend: ["NodeJS", "Express", "NestJS", "Prisma"],
+  DevOps: [
+    "Docker",
+    "MongoDB",
+    "PostgreSQL",
+    "Git",
+    "Turborepo",
+    "GitHub Actions",
+  ],
   Collaboration: ["Figma", "Docker Desktop", "Notion"],
 };
 
@@ -72,14 +85,24 @@ export default function About() {
           <p className="hero-tagline">끊임없이 발전하는 프론트엔드 개발자</p>
           <div className="hero-contact">
             <a href={`mailto:${contact.email}`} className="contact-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="M22 6l-10 7L2 6" />
               </svg>
               {contact.email}
             </a>
             <a href={`tel:${contact.phone}`} className="contact-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
               {contact.phone}
@@ -103,27 +126,32 @@ export default function About() {
       <section className="about-section story-section">
         <div className="story-content">
           <p>
-            <span className="story-highlight">2013년</span>, 개발자로서 첫걸음을 내딛었습니다.
-            시간이 흐르며 프론트엔드라는 분야가 뚜렷하게 자리 잡았고, UI/UX를 고민하며 직관적인
-            화면을 만들어가는 과정에 매력을 느껴 다시 이 길을 선택하게 되었습니다.
+            <span className="story-highlight">2013년</span>, 개발자로서 첫걸음을
+            내딛었습니다. 시간이 흐르며 프론트엔드라는 분야가 뚜렷하게 자리
+            잡았고, UI/UX를 고민하며 직관적인 화면을 만들어가는 과정에 매력을
+            느껴 다시 이 길을 선택하게 되었습니다.
           </p>
 
           <p>
             최근 개발 환경에서는 개별 기술 숙련도뿐 아니라{" "}
             <span className="story-highlight">
-              제품을 깊이 이해하고 AI를 효율적으로 활용해 빠르게 결과를 만들어내는 역량
+              제품을 깊이 이해하고 AI를 효율적으로 활용해 빠르게 결과를
+              만들어내는 역량
             </span>
-            이 더욱 중요해지고 있다고 생각합니다. 이러한 흐름에 맞춰 Cursor, Codex, Claude Code 등
-            다양한 AI 에이전트를 적극적으로 활용하며, 개발 속도와 완성도를 동시에 높이기 위한 방법을
-            지속적으로 고민하고 있습니다.
+            이 더욱 중요해지고 있다고 생각합니다. 이러한 흐름에 맞춰 Cursor,
+            Codex, Claude Code 등 다양한 AI 에이전트를 적극적으로 활용하며, 개발
+            속도와 완성도를 동시에 높이기 위한 방법을 지속적으로 고민하고
+            있습니다.
           </p>
 
           <p>
             또한 단순한 기능 구현에 그치지 않고{" "}
             <span className="story-highlight">
-              직관적이고 아름다운 사용자 경험을 제공하기 위해 UI·UX와 디자인 전반에 대한 학습을 병행
+              직관적이고 아름다운 사용자 경험을 제공하기 위해 UI·UX와 디자인
+              전반에 대한 학습을 병행
             </span>
-            하며, 기술과 디자인의 균형을 갖춘 프론트엔드 개발자로 성장하고자 합니다.
+            하며, 기술과 디자인의 균형을 갖춘 프론트엔드 개발자로 성장하고자
+            합니다.
           </p>
         </div>
       </section>
@@ -136,7 +164,9 @@ export default function About() {
             <div key={exp.company} className="timeline-item">
               <div className="timeline-marker">
                 <span className="timeline-dot" />
-                {idx < experiences.length - 1 && <span className="timeline-line" />}
+                {idx < experiences.length - 1 && (
+                  <span className="timeline-line" />
+                )}
               </div>
               <div className="timeline-content">
                 <div className="timeline-header">
