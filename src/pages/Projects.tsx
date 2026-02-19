@@ -22,6 +22,7 @@ interface Project {
   detailDescription?: string;
   history?: ProjectHistory[];
   challenges?: string[];
+  roadmap?: string[];
 }
 
 const projects: Project[] = [
@@ -99,6 +100,11 @@ const projects: Project[] = [
       "Figma 토큰의 중첩 구조를 플랫한 CSS 변수로 변환 시 네이밍 충돌 — 재귀 flatten 함수로 kebab-case 변환 및 토큰 타입별 단위 자동 부여로 해결",
       "variant/size 조합의 스타일 분기 복잡도 — data-* attribute 패턴 도입으로 className 조합 로직 제거, CSS 셀렉터만으로 모든 변형 표현",
       "다크 모드에서 컴포넌트 가시성 문제 — surface/surface-muted 분리로 배경 대비 확보, on-primary/on-error 토큰으로 컬러 위 텍스트 가독성 보장",
+    ],
+    roadmap: [
+      "디자인 가이드라인 문서화 — 컴포넌트별 사용 규칙, 간격·컬러 조합 가이드",
+      "접근성(a11y) 검증 — WCAG AA 색상 대비 비율 검증, 스크린 리더 테스트",
+      "레이아웃 컴포넌트 추가 — Stack, Flex, Grid, Container 등 레이아웃 프리미티브",
     ],
   },
   {
@@ -588,6 +594,17 @@ function ProjectDetail({
           <ul className="project-detail__challenges">
             {project.challenges.map((challenge, index) => (
               <li key={index}>{challenge}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {project.roadmap && project.roadmap.length > 0 && (
+        <section className="project-detail__section">
+          <h2>향후 계획</h2>
+          <ul className="project-detail__challenges">
+            {project.roadmap.map((item, index) => (
+              <li key={index}>{item}</li>
             ))}
           </ul>
         </section>
