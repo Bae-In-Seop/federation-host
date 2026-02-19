@@ -26,6 +26,71 @@ interface Project {
 
 const projects: Project[] = [
   {
+    id: "toby-design-system",
+    title: "Toby Design System",
+    description:
+      "Figma 토큰 연동부터 React 컴포넌트 라이브러리, Storybook 문서화, CI/CD 자동 배포까지 갖춘 모노레포 디자인 시스템",
+    role: "설계 및 프론트엔드 개발 (1인)",
+    techs: [
+      "React",
+      "TypeScript",
+      "CSS Modules",
+      "Storybook 10",
+      "Vitest",
+      "tsup",
+      "Turborepo",
+      "pnpm Workspaces",
+      "Figma Tokens Studio",
+      "GitHub Actions",
+      "Changesets",
+    ],
+    features: [
+      "Figma Tokens Studio(W3C DTCG) → CSS 변수 + TS 타입 자동 생성 파이프라인",
+      "10개 React 컴포넌트 — 컴포넌트당 구현, 스타일, 스토리, 테스트, 배럴 5파일 구조",
+      "9개 카테고리 49개 디자인 토큰 기반 스타일링 — 하드코딩 없이 100% 토큰 참조",
+      "Storybook 10 인터랙티브 문서 + GitHub Actions CI/CD 자동 배포",
+    ],
+    type: "tool",
+    link: "/federation-host/design-system-storybook",
+    detailDescription:
+      "디자인과 개발 사이의 간극을 해소하기 위해 설계한 모노레포 디자인 시스템입니다. Figma Tokens Studio에서 추출한 디자인 토큰을 CSS 커스텀 프로퍼티와 TypeScript 타입 상수로 자동 변환하고, 이를 기반으로 모든 컴포넌트가 토큰 참조만으로 스타일링됩니다. Changesets 버전 관리, npm 자동 퍼블리싱, Storybook GitHub Pages 배포까지 전체 릴리즈 파이프라인을 구축했습니다.",
+    history: [
+      {
+        version: "1차 업데이트",
+        title: "모노레포 및 토큰 파이프라인 구축",
+        items: [
+          "pnpm Workspaces + Turborepo 기반 모노레포 구성",
+          "Figma Tokens Studio JSON(W3C DTCG 포맷) 파싱 및 토큰 동기화 스크립트 구현",
+          "토큰 컴파일러가 CSS 커스텀 프로퍼티, TypeScript 타입 상수, JSON 3개 아티팩트 동시 생성",
+          "9개 카테고리 49개 토큰 체계 설계 (color, spacing, radius, fontSize, fontWeight, lineHeight, shadow, transition, zIndex)",
+        ],
+      },
+      {
+        version: "2차 업데이트",
+        title: "컴포넌트 라이브러리 구현",
+        items: [
+          "Button, Input, Select, Dialog, Toast, Tabs 등 10개 컴포넌트 구현",
+          "컴포넌트당 5파일 표준 구조 확립 및 Handlebars 기반 CLI 스캐폴딩 도구 제작",
+          "CSS Modules + data-* attribute 패턴으로 variant/size 표현, 모든 스타일 값 토큰 참조",
+          "tsup ESM/CJS 듀얼 빌드, Vitest + Testing Library 테스트 환경 구성",
+        ],
+      },
+      {
+        version: "3차 업데이트",
+        title: "Storybook 문서화 및 CI/CD",
+        items: [
+          "Storybook 10 기반 인터랙티브 문서 구축 (CSF3 + autodocs Props 자동 문서화)",
+          "GitHub Actions CI — lint, type-check, test, build 자동 실행",
+          "Changesets 기반 npm 자동 퍼블리싱 및 Storybook GitHub Pages 자동 배포",
+        ],
+      },
+    ],
+    challenges: [
+      "Figma 토큰의 중첩 구조를 플랫한 CSS 변수로 변환 시 네이밍 충돌 — 재귀 flatten 함수로 kebab-case 변환 및 토큰 타입별 단위 자동 부여로 해결",
+      "variant/size 조합의 스타일 분기 복잡도 — data-* attribute 패턴 도입으로 className 조합 로직 제거, CSS 셀렉터만으로 모든 변형 표현",
+    ],
+  },
+  {
     id: "advisor-assistant",
     title: "상담 어시스턴트",
     description:
