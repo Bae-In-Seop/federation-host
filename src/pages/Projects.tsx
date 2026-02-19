@@ -26,8 +26,8 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: "toby-design-system",
-    title: "Toby Design System",
+    id: "design-system",
+    title: "Design System",
     description:
       "Figma 토큰 연동부터 React 컴포넌트 라이브러리, Storybook 문서화, CI/CD 자동 배포까지 갖춘 모노레포 디자인 시스템",
     role: "설계 및 프론트엔드 개발 (1인)",
@@ -46,14 +46,15 @@ const projects: Project[] = [
     ],
     features: [
       "Figma Tokens Studio(W3C DTCG) → CSS 변수 + TS 타입 자동 생성 파이프라인",
+      "Primitive/Semantic 2계층 토큰 아키텍처 — Light/Dark 테마 자동 전환",
+      "ThemeProvider + useTheme 훅 기반 React 네이티브 테마 제어",
       "10개 React 컴포넌트 — 컴포넌트당 구현, 스타일, 스토리, 테스트, 배럴 5파일 구조",
-      "9개 카테고리 49개 디자인 토큰 기반 스타일링 — 하드코딩 없이 100% 토큰 참조",
       "Storybook 10 인터랙티브 문서 + GitHub Actions CI/CD 자동 배포",
     ],
     type: "tool",
     link: "/federation-host/design-system-storybook",
     detailDescription:
-      "디자인과 개발 사이의 간극을 해소하기 위해 설계한 모노레포 디자인 시스템입니다. Figma Tokens Studio에서 추출한 디자인 토큰을 CSS 커스텀 프로퍼티와 TypeScript 타입 상수로 자동 변환하고, 이를 기반으로 모든 컴포넌트가 토큰 참조만으로 스타일링됩니다. Changesets 버전 관리, npm 자동 퍼블리싱, Storybook GitHub Pages 배포까지 전체 릴리즈 파이프라인을 구축했습니다.",
+      "디자인과 개발 사이의 간극을 해소하기 위해 설계한 모노레포 디자인 시스템입니다. Figma Tokens Studio에서 추출한 디자인 토큰을 Primitive/Semantic 2계층으로 구조화하고, CSS 커스텀 프로퍼티와 TypeScript 타입 상수로 자동 변환합니다. Semantic 토큰은 Light/Dark 테마에 따라 값이 달라지며, ThemeProvider와 useTheme 훅으로 React 컴포넌트에서 테마를 제어합니다. Changesets 버전 관리, npm 자동 퍼블리싱, Storybook GitHub Pages 배포까지 전체 릴리즈 파이프라인을 구축했습니다.",
     history: [
       {
         version: "1차 업데이트",
@@ -62,7 +63,6 @@ const projects: Project[] = [
           "pnpm Workspaces + Turborepo 기반 모노레포 구성",
           "Figma Tokens Studio JSON(W3C DTCG 포맷) 파싱 및 토큰 동기화 스크립트 구현",
           "토큰 컴파일러가 CSS 커스텀 프로퍼티, TypeScript 타입 상수, JSON 3개 아티팩트 동시 생성",
-          "9개 카테고리 49개 토큰 체계 설계 (color, spacing, radius, fontSize, fontWeight, lineHeight, shadow, transition, zIndex)",
         ],
       },
       {
@@ -84,10 +84,21 @@ const projects: Project[] = [
           "Changesets 기반 npm 자동 퍼블리싱 및 Storybook GitHub Pages 자동 배포",
         ],
       },
+      {
+        version: "4차 업데이트",
+        title: "시맨틱 토큰 + 다크 테마",
+        items: [
+          "Primitive/Semantic 2계층 토큰 아키텍처로 재설계 (74개 토큰)",
+          "Light/Dark 테마 — [data-theme] CSS 변수 오버라이드 방식",
+          "ThemeProvider + useTheme 훅 — React Context 기반 테마 제어",
+          "10개 컴포넌트 전체 다크 모드 대응 및 시맨틱 토큰 마이그레이션",
+        ],
+      },
     ],
     challenges: [
       "Figma 토큰의 중첩 구조를 플랫한 CSS 변수로 변환 시 네이밍 충돌 — 재귀 flatten 함수로 kebab-case 변환 및 토큰 타입별 단위 자동 부여로 해결",
       "variant/size 조합의 스타일 분기 복잡도 — data-* attribute 패턴 도입으로 className 조합 로직 제거, CSS 셀렉터만으로 모든 변형 표현",
+      "다크 모드에서 컴포넌트 가시성 문제 — surface/surface-muted 분리로 배경 대비 확보, on-primary/on-error 토큰으로 컬러 위 텍스트 가독성 보장",
     ],
   },
   {
@@ -358,7 +369,10 @@ const projects: Project[] = [
       {
         version: "1차 업데이트",
         title: "핵심 기능 구현",
-        items: ["음성인식 솔루션을 연계하여 실시간 녹음 기능 제공", "파일 음성인식 기능 구현"],
+        items: [
+          "음성인식 솔루션을 연계하여 실시간 녹음 기능 제공",
+          "파일 음성인식 기능 구현",
+        ],
       },
       {
         version: "2차 업데이트",
@@ -409,7 +423,12 @@ const projects: Project[] = [
       "사용자가 입력한 단어를 여러 국가의 언어로 자동 번역하여 결과를 DB에 저장하고 JSON 형식으로 내보낼 수 있는 관리 도구",
     role: "풀스택 개발",
     techs: ["React", "Node.js", "MongoDB", "Express"],
-    features: ["자동 번역 API 연동", "번역 키 관리", "JSON/Excel 내보내기", "번역 히스토리 관리"],
+    features: [
+      "자동 번역 API 연동",
+      "번역 키 관리",
+      "JSON/Excel 내보내기",
+      "번역 히스토리 관리",
+    ],
     type: "tool",
     detailDescription:
       "다국어 지원이 필요한 프로젝트를 위한 번역 관리 도구입니다. 번역 API와 연동하여 자동 번역을 지원하며, JSON/Excel 형식으로 내보내기가 가능합니다.",
@@ -443,7 +462,13 @@ const typeIcons: Record<Project["type"], React.ReactNode> = {
   ),
 };
 
-function ProjectDetail({ project, onBack }: { project: Project; onBack: () => void }) {
+function ProjectDetail({
+  project,
+  onBack,
+}: {
+  project: Project;
+  onBack: () => void;
+}) {
   const handleLinkClick = () => {
     if (project.link?.startsWith("http")) {
       window.open(project.link, "_blank", "noopener,noreferrer");
@@ -455,7 +480,12 @@ function ProjectDetail({ project, onBack }: { project: Project; onBack: () => vo
   return (
     <div className="project-detail">
       <button type="button" className="project-detail__back" onClick={onBack}>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
           <path d="M19 12H5M12 19l-7-7 7-7" />
         </svg>
         목록으로
@@ -491,8 +521,17 @@ function ProjectDetail({ project, onBack }: { project: Project; onBack: () => vo
         </div>
 
         {project.link && (
-          <button type="button" className="project-detail__link" onClick={handleLinkClick}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <button
+            type="button"
+            className="project-detail__link"
+            onClick={handleLinkClick}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
               <polyline points="15 3 21 3 21 9" />
               <line x1="10" y1="14" x2="21" y2="3" />
@@ -561,7 +600,12 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   if (selectedProject) {
-    return <ProjectDetail project={selectedProject} onBack={() => setSelectedProject(null)} />;
+    return (
+      <ProjectDetail
+        project={selectedProject}
+        onBack={() => setSelectedProject(null)}
+      />
+    );
   }
 
   return (
@@ -591,7 +635,9 @@ export default function Projects() {
                 </span>
               ))}
               {project.techs.length > 4 && (
-                <span className="tech-tag tech-tag--more">+{project.techs.length - 4}</span>
+                <span className="tech-tag tech-tag--more">
+                  +{project.techs.length - 4}
+                </span>
               )}
             </div>
 
@@ -600,7 +646,9 @@ export default function Projects() {
                 <li key={feature}>{feature}</li>
               ))}
               {project.features.length > 3 && (
-                <li className="feature-more">외 {project.features.length - 3}개</li>
+                <li className="feature-more">
+                  외 {project.features.length - 3}개
+                </li>
               )}
             </ul>
 
@@ -609,7 +657,12 @@ export default function Projects() {
               className="project-link-btn"
               onClick={() => setSelectedProject(project)}
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
                 <path d="M9 18l6-6-6-6" />
               </svg>
               자세히 보기
