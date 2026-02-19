@@ -25,3 +25,4 @@ dist-ssr
 *.sw?
 .__mf__temp/
 .env
+resume.html
