@@ -522,7 +522,7 @@
   font-weight: bold;
 }
 
-/* Challenges */
+/* Challenges & Roadmap */
 .project-detail__challenges {
   margin: 0;
   padding: 0;
@@ -534,12 +534,25 @@
 
 .project-detail__challenges li {
   padding: 16px 20px;
-  background: linear-gradient(135deg, #fef3c7 0%, #fef9c3 100%);
+  background: rgba(255, 255, 255, 0.04);
   border-radius: 10px;
-  border-left: 4px solid #f59e0b;
-  font-size: calc(var(--base-font-size) * 0.875);
-  color: #78350f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid rgba(99, 102, 241, 0.6);
   line-height: 1.6;
+}
+
+.project-detail__challenges li strong {
+  display: block;
+  font-size: calc(var(--base-font-size) * 0.9);
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 6px;
+}
+
+.project-detail__challenges li p {
+  margin: 0;
+  font-size: calc(var(--base-font-size) * 0.8);
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
 }
 
 /* Responsive */
