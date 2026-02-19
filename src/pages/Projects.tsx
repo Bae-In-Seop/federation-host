@@ -21,8 +21,8 @@ interface Project {
   // Detail page content
   detailDescription?: string;
   history?: ProjectHistory[];
-  challenges?: string[];
-  roadmap?: string[];
+  challenges?: { title: string; description: string }[];
+  roadmap?: { title: string; description: string }[];
 }
 
 const projects: Project[] = [
@@ -97,14 +97,32 @@ const projects: Project[] = [
       },
     ],
     challenges: [
-      "Figma 토큰이 color > primary > hover 처럼 깊게 중첩되어 있어 CSS 변수명이 겹치는 문제 — 중첩 구조를 자동으로 펼쳐서 --color-primary-hover 같은 이름으로 변환하는 스크립트 작성",
-      "버튼 하나에 variant 4종 × size 3종 = 12가지 스타일 조합이 필요한 문제 — data-variant, data-size 속성과 CSS 셀렉터만으로 처리해서 JS 분기 로직 제거",
-      "다크 모드 전환 시 배경과 텍스트가 같은 색이 되어 안 보이는 문제 — 배경용(surface)과 텍스트용(on-primary) 토큰을 분리하여 어떤 테마에서도 대비가 유지되도록 설계",
+      {
+        title: "Figma 토큰 중첩 구조 → CSS 변수 변환",
+        description: "Figma 토큰이 color > primary > hover 처럼 깊게 중첩되어 있어 CSS 변수명이 겹치는 문제 — 중첩 구조를 자동으로 펼쳐서 --color-primary-hover 같은 이름으로 변환하는 스크립트 작성",
+      },
+      {
+        title: "variant/size 조합 스타일 분기",
+        description: "버튼 하나에 variant 4종 × size 3종 = 12가지 스타일 조합이 필요한 문제 — data-variant, data-size 속성과 CSS 셀렉터만으로 처리해서 JS 분기 로직 제거",
+      },
+      {
+        title: "다크 모드 색상 가시성 확보",
+        description: "다크 모드 전환 시 배경과 텍스트가 같은 색이 되어 안 보이는 문제 — 배경용(surface)과 텍스트용(on-primary) 토큰을 분리하여 어떤 테마에서도 대비가 유지되도록 설계",
+      },
     ],
     roadmap: [
-      "디자인 가이드라인 문서화 — 컴포넌트별 사용 규칙, 간격·컬러 조합 가이드",
-      "접근성(a11y) 검증 — WCAG AA 색상 대비 비율 검증, 스크린 리더 테스트",
-      "레이아웃 컴포넌트 추가 — Stack, Flex, Grid, Container 등 레이아웃 프리미티브",
+      {
+        title: "디자인 가이드라인 문서화",
+        description: "컴포넌트별 사용 규칙, 간격·컬러 조합 가이드 작성",
+      },
+      {
+        title: "접근성(a11y) 검증",
+        description: "WCAG AA 색상 대비 비율 검증, 스크린 리더 테스트",
+      },
+      {
+        title: "레이아웃 컴포넌트 추가",
+        description: "Stack, Flex, Grid, Container 등 레이아웃 프리미티브 구현",
+      },
     ],
   },
   {
@@ -291,9 +309,18 @@ const projects: Project[] = [
       },
     ],
     challenges: [
-      "1시간 이상 녹음 파일 렌더링 시 페이지 멈춤 → 가상화(Virtualization) 적용으로 해결",
-      "음성 재생 시간과 스크롤 동기화 시 State 업데이트 성능 이슈 → Interval 처리로 최적화",
-      "대용량 데이터에서 현재 재생 위치 찾기 성능 저하 → 검색 알고리즘 개선",
+      {
+        title: "대용량 녹음 파일 렌더링 성능",
+        description: "1시간 이상 녹음 파일 렌더링 시 페이지 멈춤 → 가상화(Virtualization) 적용으로 해결",
+      },
+      {
+        title: "음성 재생-스크롤 동기화",
+        description: "음성 재생 시간과 스크롤 동기화 시 State 업데이트 성능 이슈 → Interval 처리로 최적화",
+      },
+      {
+        title: "재생 위치 탐색 성능",
+        description: "대용량 데이터에서 현재 재생 위치 찾기 성능 저하 → 검색 알고리즘 개선",
+      },
     ],
   },
   {
@@ -340,9 +367,18 @@ const projects: Project[] = [
       },
     ],
     challenges: [
-      "10개 마이크 동시 사용 시 Streaming 렌더링 성능 저하 → Stack 처리 방식으로 전환하여 해결",
-      "대용량 음성인식 데이터 렌더링 성능 이슈 → 가상화(Virtualization) 적용으로 해결",
-      "시스템 부팅 시 HDD 초기화로 인한 경로 문제 → 상대경로 지원으로 해결",
+      {
+        title: "멀티 마이크 스트리밍 렌더링",
+        description: "10개 마이크 동시 사용 시 Streaming 렌더링 성능 저하 → Stack 처리 방식으로 전환하여 해결",
+      },
+      {
+        title: "대용량 음성인식 데이터 렌더링",
+        description: "대용량 음성인식 데이터 렌더링 성능 이슈 → 가상화(Virtualization) 적용으로 해결",
+      },
+      {
+        title: "HDD 초기화 환경 대응",
+        description: "시스템 부팅 시 HDD 초기화로 인한 경로 문제 → 상대경로 지원으로 해결",
+      },
     ],
   },
   {
@@ -400,8 +436,14 @@ const projects: Project[] = [
       },
     ],
     challenges: [
-      "대용량 데이터 렌더링 성능 이슈 → 가상화 + IntersectionObserver API 적용으로 해결",
-      "MSA 환경에서 소규모 팀의 관리 포인트 증가 문제 인식 → 팀 규모에 따른 아키텍처 선택의 중요성 학습",
+      {
+        title: "대용량 데이터 렌더링 성능",
+        description: "대용량 데이터 렌더링 성능 이슈 → 가상화 + IntersectionObserver API 적용으로 해결",
+      },
+      {
+        title: "MSA 아키텍처 운영 경험",
+        description: "MSA 환경에서 소규모 팀의 관리 포인트 증가 문제 인식 → 팀 규모에 따른 아키텍처 선택의 중요성 학습",
+      },
     ],
   },
   {
@@ -593,7 +635,10 @@ function ProjectDetail({
           <h2>기술적 도전 및 해결</h2>
           <ul className="project-detail__challenges">
             {project.challenges.map((challenge, index) => (
-              <li key={index}>{challenge}</li>
+              <li key={index}>
+                <strong>{challenge.title}</strong>
+                <p>{challenge.description}</p>
+              </li>
             ))}
           </ul>
         </section>
@@ -604,7 +649,10 @@ function ProjectDetail({
           <h2>향후 계획</h2>
           <ul className="project-detail__challenges">
             {project.roadmap.map((item, index) => (
-              <li key={index}>{item}</li>
+              <li key={index}>
+                <strong>{item.title}</strong>
+                <p>{item.description}</p>
+              </li>
             ))}
           </ul>
         </section>
