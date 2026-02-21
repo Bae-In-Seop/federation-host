@@ -18,6 +18,7 @@ interface Project {
   features: string[];
   type: "web" | "desktop" | "tool";
   link?: string;
+  npmLink?: string;
   // Detail page content
   detailDescription?: string;
   history?: ProjectHistory[];
@@ -38,7 +39,7 @@ const projects: Project[] = [
       "CSS Modules",
       "Storybook 10",
       "Vitest",
-      "tsup",
+      "Vite",
       "Turborepo",
       "pnpm Workspaces",
       "Figma Tokens Studio",
@@ -49,13 +50,15 @@ const projects: Project[] = [
       "Figma Tokens Studio(W3C DTCG) → CSS 변수 + TS 타입 자동 생성 파이프라인",
       "Primitive/Semantic 2계층 토큰 아키텍처 — Light/Dark 테마 자동 전환",
       "ThemeProvider + useTheme 훅 기반 React 네이티브 테마 제어",
-      "10개 React 컴포넌트 — 컴포넌트당 구현, 스타일, 스토리, 테스트, 배럴 5파일 구조",
+      "13개 React 컴포넌트 — 컴포넌트당 구현, 스타일, 스토리, 테스트, 배럴 5파일 구조",
+      "Vite Library Mode ESM/CJS 듀얼 빌드 + CSS Modules 해시 클래스명 정상 번들링",
       "Storybook 10 인터랙티브 문서 + GitHub Actions CI/CD 자동 배포",
     ],
     type: "tool",
     link: "/federation-host/design-system-storybook",
+    npmLink: "https://www.npmjs.com/package/@toby-design/components",
     detailDescription:
-      "디자인과 개발 사이의 간극을 해소하기 위해 설계한 모노레포 디자인 시스템입니다. Figma Tokens Studio에서 추출한 디자인 토큰을 Primitive/Semantic 2계층으로 구조화하고, CSS 커스텀 프로퍼티와 TypeScript 타입 상수로 자동 변환합니다. Semantic 토큰은 Light/Dark 테마에 따라 값이 달라지며, ThemeProvider와 useTheme 훅으로 React 컴포넌트에서 테마를 제어합니다. Changesets 버전 관리, npm 자동 퍼블리싱, Storybook GitHub Pages 배포까지 전체 릴리즈 파이프라인을 구축했습니다.",
+      "디자인과 개발 사이의 간극을 해소하기 위해 설계한 모노레포 디자인 시스템입니다. Figma Tokens Studio에서 추출한 디자인 토큰을 Primitive/Semantic 2계층으로 구조화하고, CSS 커스텀 프로퍼티와 TypeScript 타입 상수로 자동 변환합니다. Semantic 토큰은 Light/Dark 테마에 따라 값이 달라지며, ThemeProvider와 useTheme 훅으로 React 컴포넌트에서 테마를 제어합니다. Vite Library Mode로 ESM/CJS 듀얼 빌드하며, CSS Modules 해시 클래스명이 JS·CSS 양쪽에 정확히 매핑됩니다. Changesets 버전 관리, npm 자동 퍼블리싱, Storybook GitHub Pages 배포까지 전체 릴리즈 파이프라인을 구축했습니다.",
     history: [
       {
         version: "1차 업데이트",
@@ -73,7 +76,7 @@ const projects: Project[] = [
           "Button, Input, Select, Dialog, Toast, Tabs 등 10개 컴포넌트 구현",
           "컴포넌트당 5파일 표준 구조 확립 및 Handlebars 기반 CLI 스캐폴딩 도구 제작",
           "CSS Modules + data-* attribute 패턴으로 variant/size 표현, 모든 스타일 값 토큰 참조",
-          "tsup ESM/CJS 듀얼 빌드, Vitest + Testing Library 테스트 환경 구성",
+          "Vitest + Testing Library 테스트 환경 구성",
         ],
       },
       {
@@ -95,6 +98,15 @@ const projects: Project[] = [
           "10개 컴포넌트 전체 다크 모드 대응 및 시맨틱 토큰 마이그레이션",
         ],
       },
+      {
+        version: "5차 업데이트",
+        title: "컴포넌트 확장 + Vite 빌드 마이그레이션",
+        items: [
+          "Accordion, Tooltip, Switch 3개 컴포넌트 추가 (총 13개)",
+          "tsup → Vite Library Mode 마이그레이션 — CSS Modules 해시 클래스명 JS·CSS 양쪽 정상 매핑",
+          "styles.css에 토큰 번들링 — 소비자 단일 import로 DX 개선",
+        ],
+      },
     ],
     challenges: [
       {
@@ -108,6 +120,10 @@ const projects: Project[] = [
       {
         title: "다크 모드 색상 가시성 확보",
         description: "다크 모드 전환 시 배경과 텍스트가 같은 색이 되어 안 보이는 문제 — 배경용(surface)과 텍스트용(on-primary) 토큰을 분리하여 어떤 테마에서도 대비가 유지되도록 설계",
+      },
+      {
+        title: "CSS Modules 클래스명 매핑 누락",
+        description: "tsup 빌드 시 CSS Modules의 클래스명 매핑 객체가 빈 객체({})로 번들링되어 npm 배포 후 모든 컴포넌트 스타일이 적용되지 않는 문제 — Vite Library Mode로 마이그레이션하여 해시 클래스명이 JS·CSS 양쪽에 정확히 매핑되도록 해결",
       },
     ],
     roadmap: [
@@ -568,25 +584,41 @@ function ProjectDetail({
           </div>
         </div>
 
-        {project.link && (
-          <button
-            type="button"
-            className="project-detail__link"
-            onClick={handleLinkClick}
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
+        <div className="project-detail__links">
+          {project.link && (
+            <button
+              type="button"
+              className="project-detail__link"
+              onClick={handleLinkClick}
             >
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-              <polyline points="15 3 21 3 21 9" />
-              <line x1="10" y1="14" x2="21" y2="3" />
-            </svg>
-            서비스 바로가기
-          </button>
-        )}
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              서비스 바로가기
+            </button>
+          )}
+          {project.npmLink && (
+            <button
+              type="button"
+              className="project-detail__link project-detail__link--npm"
+              onClick={() =>
+                window.open(project.npmLink, "_blank", "noopener,noreferrer")
+              }
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331zM10.665 10H12v2.667h-1.335V10z" />
+              </svg>
+              npm
+            </button>
+          )}
+        </div>
       </header>
 
       <section className="project-detail__section">

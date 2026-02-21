@@ -363,12 +363,18 @@
   color: #1e293b;
 }
 
-/* Link Button */
+/* Link Buttons */
+.project-detail__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
 .project-detail__link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
   padding: 14px 24px;
   background: linear-gradient(135deg, var(--theme-primary), var(--theme-accent));
   color: white;
@@ -389,6 +395,14 @@
 .project-detail__link svg {
   width: 18px;
   height: 18px;
+}
+
+.project-detail__link--npm {
+  background: #cb3837;
+}
+
+.project-detail__link--npm:hover {
+  box-shadow: 0 6px 20px color-mix(in srgb, #cb3837 40%, transparent);
 }
 
 /* Sections */
